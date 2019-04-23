@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RemoteSystemsTempFiles/RemoteSystemsTempFiles.iml" filepath="$PROJECT_DIR$/RemoteSystemsTempFiles/RemoteSystemsTempFiles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gcs-automated-testing/frontend-functional-db/frontend-functional-db.iml" filepath="$PROJECT_DIR$/gcs-automated-testing/frontend-functional-db/frontend-functional-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gcs-automated-testing/frontend-functional-db/build/tmp/expandedArchives/org.jacoco.agent-0.7.1.201405082137.jar_5kkng7mu5tacaj0diee8u78dmv/META-INF/maven/org.jacoco/org.jacoco.agent/org.jacoco.agent.iml" filepath="$PROJECT_DIR$/gcs-automated-testing/frontend-functional-db/build/tmp/expandedArchives/org.jacoco.agent-0.7.1.201405082137.jar_5kkng7mu5tacaj0diee8u78dmv/META-INF/maven/org.jacoco/org.jacoco.agent/org.jacoco.agent.iml" />
+    </modules>
+  </component>
+</project>

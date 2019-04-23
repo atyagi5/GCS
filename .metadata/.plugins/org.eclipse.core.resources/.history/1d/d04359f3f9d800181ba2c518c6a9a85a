@@ -1,0 +1,282 @@
+package com.macquarie.regression;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.File;
+
+import org.apache.log4j.Logger;
+import org.testng.annotations.Test;
+
+import com.macquarie.base.BaseTests;
+import com.macquarie.common.Constants;
+import com.macquarie.common.Reporter;
+import com.macquarie.common.Utilities;
+import com.macquarie.pages.HomePage;
+import com.macquarie.pages.JournalWorkBenchAccountEnquiryPage;
+import com.macquarie.pages.data.Data;
+
+import com.macquarie.common.Constants;
+
+public class AccountEnquiryTest2 extends BaseTests {
+
+	static Logger log = Logger.getLogger(AccountEnquiryTest2.class.getName());
+
+	@Test(priority = 0)
+	public void AccountEnquiryCurentTest() {
+		new HomePage(driver).sbMenuenquireNewEnquire()
+				.searchTheDetails(Data.AccountEnquiryTest.ACCOUNTNO, Data.AccountEnquiryTest.GROUPCODE,
+						Data.AccountEnquiryTest.CURRENCY, Data.AccountEnquiryTest.VIEWTYPE, "",
+						Data.AccountEnquiryTest.DATEOPTIONFINAL)
+				.clickFindButton1();
+		int rowSize = new JournalWorkBenchAccountEnquiryPage(driver).getTableRow();
+		log.info("-----------------" + rowSize);
+		if (rowSize > 0) {
+
+			Reporter.pass("verifying the record is ppresen or not", "The table should have some record",
+					"The table contains record", driver);
+
+		} else {
+
+			Reporter.fail("verifying the record is ppresen or not", "The table should have some record",
+					"The table contains no record", driver);
+		}
+
+	}
+
+	@Test(priority = 1)
+	public void AccountEnquiryFinalTest() {
+		new HomePage(driver).sbMenuenquireNewEnquire()
+				.searchTheDetails(Data.AccountEnquiryTest.ACCOUNTNO, Data.AccountEnquiryTest.GROUPCODE,
+						Data.AccountEnquiryTest.CURRENCY, Data.AccountEnquiryTest.VIEWTYPE, "",
+						Data.AccountEnquiryTest.DATEOPTIONFINAL)
+				.clickFindButton1();
+		int rowSize = new JournalWorkBenchAccountEnquiryPage(driver).getTableRow();
+		log.info("-----------------" + rowSize);
+		if (rowSize > 0) {
+
+			Reporter.pass("verifying the record is ppresen or not", "The table should have some record",
+					"The table contains record", driver);
+		} else {
+
+			Reporter.fail("verifying the record is ppresen or not", "The table should have some record",
+					"The table contains no record", driver);
+		}
+
+	}
+
+	@Test(priority = 2)
+	public void AccountEnquiryProvisonalTest()
+
+	{
+		new HomePage(driver).sbMenuenquireNewEnquire()
+				.searchTheDetails(Data.AccountEnquiryTest.ACCOUNTNO, Data.AccountEnquiryTest.GROUPCODE,
+						Data.AccountEnquiryTest.CURRENCY, Data.AccountEnquiryTest.VIEWTYPE, "",
+						Data.AccountEnquiryTest.DATEOPTIONPROVISION)
+				.clickFindButton1();
+		int rowSize = new JournalWorkBenchAccountEnquiryPage(driver).getTableRow();
+		log.info("-----------------" + rowSize);
+		if (rowSize > 0) {
+
+			Reporter.pass("verifying the record is ppresen or not", "The table should have some record",
+					"The table contains  record", driver);
+
+		} else {
+
+			Reporter.fail("verifying the record is ppresen or not", "The table should have some record",
+					"The table contains no record", driver);
+		}
+
+	}
+
+	@Test(priority = 3)
+	public void AccountEnquiryResetOptionTest() throws AWTException {
+		// System.out.println( new
+		// HomePage(driver).sbMenuenquireNewEnquire().getTitleOfPage());
+		String beforeReset = new HomePage(driver).sbMenuenquireNewEnquire().getAccountTextfield();
+		new HomePage(driver).sbMenuenquireNewEnquire()
+				.searchTheDetails(Data.AccountEnquiryTest.ACCOUNTNO, Data.AccountEnquiryTest.GROUPCODE,
+						Data.AccountEnquiryTest.CURRENCY, Data.AccountEnquiryTest.VIEWTYPE, "",
+						Data.AccountEnquiryTest.DATEOPTIONPROVISION)
+				.clickFindButton1();
+		// System.out.println(new
+		// JournalWorkBenchAccountEnquiryPage(driver).getTitleOfPage());
+
+		String afterReset = new JournalWorkBenchAccountEnquiryPage(driver).clickOnreset().getTitleOfPage()
+				.getAccountTextfield();
+		System.out.println("get befor the find-------------------------" + beforeReset);
+		System.out.println("after reset-------------------------" + afterReset);
+
+		if (beforeReset.equals(afterReset)) {
+
+			Reporter.pass("verify the reset operation ", beforeReset, afterReset, driver);
+		} else {
+
+			Reporter.pass("verify the reset operation ", beforeReset, afterReset, driver);
+		}
+	}
+
+	@Test(priority = 4)
+	public void AccountEnquiryFinOpOptionTest() {
+		int noofrows = new HomePage(driver).sbPositionWorkbenchTab()
+				.PositionsSearch(Data.AccountEnquiryTest.ACCOUNTNO, "", "", "", "", "", "", false).noOfRows();
+
+		int newtabrow = new HomePage(driver).sbMenuenquireNewEnquire()
+				.searchTheDetails(Data.AccountEnquiryTest.ACCOUNTNO, Data.AccountEnquiryTest.GROUPCODE,
+						Data.AccountEnquiryTest.CURRENCY, Data.AccountEnquiryTest.VIEWTYPE, "",
+						Data.AccountEnquiryTest.DATEOPTIONFINAL)
+				.clickFindButton1().clickOnFinAndOP().getTRFromFinAndOpTab();
+		log.info("-----------------" + newtabrow);
+		if (newtabrow > 0) {
+			Reporter.pass("verifying the record is present or not", "The table should have some record", 	
+					"The table contains  record", driver);		//Genpact
+			// Reporter.vrfy("the table content same data", noofrows, newtalrow,
+			// driver);
+			
+
+		} else {
+			Reporter.fail("verifying the record is present or not", "The table should have some record",	
+					"The table contains no record", driver);	//Genpact
+		}
+
+	}
+
+	@Test(priority = 5)
+	public void AccountEnquiryExportTest() throws AWTException {
+		new HomePage(driver).sbMenuenquireNewEnquire()
+				.searchTheDetails(Data.AccountEnquiryTest.ACCOUNTNO, Data.AccountEnquiryTest.GROUPCODE,
+						Data.AccountEnquiryTest.CURRENCY, Data.AccountEnquiryTest.VIEWTYPE, "",
+						Data.AccountEnquiryTest.DATEOPTIONFINAL)
+				.clickFindButton1().clickOnExport();
+		Robot robot = new Robot();
+
+		Utilities.sync(7);
+
+	/*	robot.keyPress(KeyEvent.VK_TAB);
+		Utilities.sync(2);
+		robot.keyPress(KeyEvent.VK_TAB);
+		Utilities.sync(2);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		Utilities.sync(2);
+		//Genpact
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_D);
+        robot.keyRelease(KeyEvent.VK_D);
+        robot.keyPress(KeyEvent.VK_O);
+        robot.keyRelease(KeyEvent.VK_O);
+        robot.keyPress(KeyEvent.VK_W);
+        robot.keyRelease(KeyEvent.VK_W);
+        Utilities.sync(2);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER); 
+        Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		robot.keyPress(KeyEvent.VK_TAB);
+  		Utilities.sync(2);
+  		//Genpact
+
+		robot.keyPress(KeyEvent.VK_ENTER);
+		Utilities.sync(2);
+		robot.keyPress(KeyEvent.VK_LEFT);
+		Utilities.sync(2);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		Utilities.sync(5);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		Utilities.sync(2);
+		robot.keyRelease(KeyEvent.VK_LEFT);
+		Utilities.sync(2);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+
+		Utilities.sync(2);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		Utilities.sync(2);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		Utilities.sync(2);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		Utilities.sync(4);
+		robot.keyPress(KeyEvent.VK_TAB);
+		Utilities.sync(2);
+		robot.keyPress(KeyEvent.VK_TAB);
+		Utilities.sync(2);
+		robot.keyPress(KeyEvent.VK_TAB);
+		Utilities.sync(2);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		Utilities.sync(2);	*/
+		
+		robot.keyPress(KeyEvent.VK_TAB);
+		 Utilities.sync(3);
+		 robot.keyPress(KeyEvent.VK_TAB);
+		 Utilities.sync(3);
+		 robot.keyPress(KeyEvent.VK_ENTER);
+		 Utilities.sync(3); 
+		 robot.keyPress(KeyEvent.VK_ENTER);
+		 Utilities.sync(5);
+		// robot.keyPress(KeyEvent.VK_LEFT);
+		 //Utilities.sync(2); 
+		 //robot.keyPress(KeyEvent.VK_ENTER);
+		 //Utilities.sync(5);
+		//Genpact added
+		//robot.keyPress(KeyEvent.VK_ALT);
+		//robot.keyPress(KeyEvent.VK_F4);
+		//robot.keyRelease(KeyEvent.VK_ALT);
+		//robot.keyRelease(KeyEvent.VK_F4);
+		//Utilities.sync(2);
+
+		File f = new File(Constants.DOWNLOAD_FOLDER + "\\" + Data.AccountEnquiryTest.EXP_FILE_NAME_ACCOUNT);
+
+		if (f.exists()) {
+			
+			Reporter.pass("Verifying Account export file is saved sucessfully",true+"",Boolean.toString(f.exists()),driver);
+		} else {
+			Reporter.fail("Verifying Account export file is saved sucessfully",true+"",Boolean.toString(f.exists()),driver);
+		}
+
+	}
+
+	@Test(priority = 7)
+	public void AccountEnquiryRecalTest() throws AWTException {
+		int beforeCalc = new HomePage(driver).sbMenuenquireNewEnquire()
+				.searchTheDetails(Data.AccountEnquiryTest.ACCOUNTNO, Data.AccountEnquiryTest.GROUPCODE,
+						Data.AccountEnquiryTest.CURRENCY, Data.AccountEnquiryTest.VIEWTYPE, "",
+						Data.AccountEnquiryTest.DATEOPTIONFINAL)
+				.clickFindButton1().getFromTable();
+		// .clickOnRecal();
+
+		int afterCalc = new JournalWorkBenchAccountEnquiryPage(driver).clickOnRecal().getFromTable();
+		System.out.println(beforeCalc + "*****************" + afterCalc);
+
+		if (beforeCalc == afterCalc) {
+			
+			Reporter.pass("the table content same data", beforeCalc+"", afterCalc+"", driver);
+
+		} else {
+			Reporter.fail("the table content same data", beforeCalc+"", afterCalc+"", driver);
+
+		}
+
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;org.jacoco.agent&apos;" deleteContents="false" description="Delete resource &apos;org.jacoco.agent&apos;" element1="/org.jacoco.agent" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1539844669883"/>
+</session>
